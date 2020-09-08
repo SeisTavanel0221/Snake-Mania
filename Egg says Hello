@@ -1,0 +1,4 @@
+egg = 1
+while egg < 5:
+  print ('Hello, world.')
+  egg = egg + 1
