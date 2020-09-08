@@ -1,0 +1,9 @@
+print ('Please enter in a number.')
+numberOne = int(input())
+print ('Now another if you do not mind.')
+numberTwo = int(input())
+print ('Now for my magic trick.')
+if numberOne > numberTwo:
+  print (str(numberTwo) + ' Is smaller.')
+else:
+  print (str(numberOne) + ' Is smaller.')
