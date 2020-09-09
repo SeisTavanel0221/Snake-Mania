@@ -1,0 +1,37 @@
+print ('Please enter a number in each of the following inputs. I will find how many are even. Please keep all numbers under 101.')
+numberOne = int(input())
+numberTwo = int(input())
+numberThree = int(input())
+numberFour = int(input())
+numberFive = int(input())
+
+even = 0
+
+i = 0
+for i in range (0, 101, 2):
+  if numberOne == i:
+    even = even + 1
+  elif numberTwo == i:
+    even = even + 1
+  elif numberThree == i:
+    even = even + 1
+  elif numberFour == i:
+    even = even + 1
+  elif numberFive == i:
+    even = even + 1
+  
+if even == 0:
+  print ('There are no even numbers.')
+elif even == 1:
+  print ('There is one even number.')
+elif even == 2:
+  print ('There are two even numbers.')
+elif even == 3:
+  print ('There are three even numbers.')
+elif even == 4:
+  print ('There are four even numbers.')
+elif even == 5:
+  print ('All of the numbers are even.')
+else:
+    print ('How did this happen?')
+    
