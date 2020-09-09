@@ -1,0 +1,11 @@
+print ('Please enter a number in each of the following inputs.')
+numberOne = int(input())
+numberTwo = int(input())
+numberThree = int(input())
+
+if (numberTwo < numberOne < numberThree) or (numberThree < numberOne < numberTwo):
+  print (str(numberOne) + 'is the middle number.')
+elif (numberOne < numberTwo < numberThree) or (numberThree < numberTwo < numberOne):
+  print (str(numberTwo) + ' is the middle number.')
+else:
+  print (str(numberThree) + ' is the middle number.')
