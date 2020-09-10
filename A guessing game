@@ -1,0 +1,62 @@
+import random
+computerNumber = random.randint(1,100)
+
+print ('Lets play a guessing game. Pick a number between 0-101.')
+playerGuess = int(input())
+
+storedGuess = 0 #Might cause the first message to say Getting Warmer/Colder. No idea how to fix it.
+numberGuesses = 1
+
+while playerGuess < computerNumber:
+  if playerGuess > computerNumber and numberGuesses <= 2:
+    print ('Too high. Try again.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif storedGuess < playerGuess and playerGuess < computerNumber:
+    print ('Getting warmer.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess < storedGuess and playerGuess > computerNumber:
+    print ('Getting colder.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess < computerNumber:
+    print ('Too low. Try again.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess == computerNumber:
+    continue 
+
+while playerGuess > computerNumber: 
+  if playerGuess < computerNumber and numberGuesses <= 2:
+    print ('Too low. Try again.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1 
+  elif storedGuess > playerGuess and playerGuess > computerNumber:
+    print ('Getting warmer.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess > storedGuess and playerGuess < computerNumber:
+    print ('Getting colder.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess > computerNumber:
+    print ('Too high. Try again.')
+    storedGuess = playerGuess
+    playerGuess = int(input())
+    numberGuesses = numberGuesses + 1
+  elif playerGuess == computerNumber:
+    continue 
+     
+if playerGuess == computerNumber:
+  print ('You found my number! It was ' + str(computerNumber) + '. You got it in ' + str(numberGuesses) + ' guesses!')
+  
+  
+  
