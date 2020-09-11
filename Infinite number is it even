@@ -1,0 +1,39 @@
+numbersInputted = 0
+numberEven = 0
+inputNumber = 0
+
+def is_it_even(number):
+  if(number % 2 == 0):
+    return True
+  else:
+    return False
+
+
+while inputNumber != -1:
+  print ('Input however many positive numbers you would like. Input -1 when you are finished.')
+  inputNumber = int(input())
+  if inputNumber == -1:
+    break
+  numbersInputted = numbersInputted + 1
+  if is_it_even(inputNumber):
+    numberEven = numberEven + 1
+
+if numbersInputted != 1 and numberEven != 1:
+  print ('Out of ' + str(numbersInputted) + ' numbers, ' + str(numberEven) + ' were even.')
+
+if numbersInputted != 1 and numberEven == 1:
+  print ('Out of ' + str(numbersInputted) + ' numbers, ' + str(numberEven) + ' was even.')
+  
+# This is a failed while loop.
+#while numbersInputted == 1:
+  #for i in range (0, 10000000001, 2):
+    #if inputNumber == i:
+      #numberEven = numberEven + 1
+      #inputNumber = int(input())
+      #numbersInputted = numbersInputted + 1
+    #elif inputNumber == -1:
+      #break
+    #elif inputNumber != i:
+      #inputNumber = int(input())
+      #numbersInputted = numbersInputted + 1
+      
