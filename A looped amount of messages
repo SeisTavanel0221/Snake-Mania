@@ -1,0 +1,8 @@
+def messages():
+  i = 0
+  print ('Please enter how many times you would like to see the message.')
+  numberMessages = int(input())
+  for i in range(0, numberMessages):
+    print('Alarm clock is canonical.')
+
+messages()
