@@ -1,0 +1,8 @@
+def square():
+  variableX = int(input("Input a number to be squared."))
+  variableY = int(input("How about another one?"))
+  variableX = variableX * variableX
+  variableY = variableY * variableY
+  print ('The squares of the two numbers are ' + str(variableX) + ' and ' + str(variableY) + ' respectively.')
+
+square()
