@@ -3,12 +3,11 @@ ageTwo = int(input("How about your friends age? "))
 biggerAge = 0
 
 def bigger(x, y):
-  global biggerAge
   if y < x:
-    biggerAge = x
+    return x
   if x < y:
-    biggerAge = y
+    return y
 
-bigger(ageOne, ageTwo)
+biggerAge = bigger(ageOne, ageTwo)
 
 print ('The older of the two people is ' + str(biggerAge) + ' years old.')
