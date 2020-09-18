@@ -1,0 +1,10 @@
+numberOne = int(input("Please enter a number. "))
+numberTwo = int(input("Now another. "))
+
+def biggerNumbers(x, y):
+  if y < x:
+    print (str(x) + ' is bigger than ' + str(y) + '.')
+  if x < y:
+    print (str(y) + ' is bigger than ' + str(x) + '.')
+    
+biggerNumbers(numberOne, numberTwo)
