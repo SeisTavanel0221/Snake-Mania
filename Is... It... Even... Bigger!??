@@ -1,0 +1,8 @@
+def bigger10():
+  inputNumber = int(input("Enter a number"))
+  if inputNumber > 10:
+    print (str(inputNumber) + ' is bigger than 10.')
+  if inputNumber < 10:
+    print (str(inputNumber) + ' is less than 10.')
+    
+bigger10()
