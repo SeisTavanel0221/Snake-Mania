@@ -1,0 +1,19 @@
+dayNumber = int(input("Please enter a number between 1 and 7 to convert into a day. "))
+
+def dayOfTheWeek(x):
+  if x == 1:
+    return "Wednesday"
+  elif x == 2:
+    return "Thursday"
+  elif x == 3:
+    return "Friday"
+  elif x == 4:
+    return "Saturday"
+  elif x == 5:
+    return "Sunday"
+  elif x == 6:
+    return "Monday"
+  else:
+    return "Tuesday"
+    
+print ('The ' + str(dayNumber) + 'th day of the week is ' + dayOfTheWeek(dayNumber) + '.')
