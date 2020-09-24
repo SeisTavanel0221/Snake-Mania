@@ -1,0 +1,22 @@
+dayNumber = int(input("Please enter a number day of the year. "))
+
+def numberToDay(x):
+  while x > 7:
+    x = x - 7
+  while x <= 7:
+    if x == 1:
+      return "Wednesday"
+    elif x == 2:
+      return "Thursday"
+    elif x == 3:
+      return "Friday"
+    elif x == 4:
+      return "Saturday"
+    elif x == 5:
+      return "Sunday"
+    elif x == 6:
+      return "Monday"
+    else:
+      return "Tuesday"
+    
+print ('The ' + str(dayNumber) + 'th day of 2020 is ' + numberToDay(dayNumber) + '.')
