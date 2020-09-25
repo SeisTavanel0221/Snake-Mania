@@ -1,0 +1,18 @@
+monthNumber = int(input("Enter a the number of the month you want. "))
+dayNumber = int(input("Enter the number of the day in the month you want. "))
+
+def monthDayToNumber(x, y):
+  if x == 1:
+    print ('January ' + str(y) + 'th is the number ' + str(y) + ' day of 2020.')
+  if x == 2:
+    print ('Febuary ' + str(y) + 'th is the number ' + str(31 + y) + ' day of 2020.')
+  if x == 3:
+  if x == 4:
+  if x == 5:
+  if x == 6:
+  if x == 7:
+  if x == 8:
+  if x == 9:
+  if x == 10:
+  if x == 11:
+  if x == 12:
