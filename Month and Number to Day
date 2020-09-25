@@ -4,15 +4,27 @@ dayNumber = int(input("Enter the number of the day in the month you want. "))
 def monthDayToNumber(x, y):
   if x == 1:
     print ('January ' + str(y) + 'th is the number ' + str(y) + ' day of 2020.')
-  if x == 2:
+  elif x == 2:
     print ('Febuary ' + str(y) + 'th is the number ' + str(31 + y) + ' day of 2020.')
-  if x == 3:
-  if x == 4:
-  if x == 5:
-  if x == 6:
-  if x == 7:
-  if x == 8:
-  if x == 9:
-  if x == 10:
-  if x == 11:
-  if x == 12:
+  elif x == 3:
+    print ('March ' + str(y) + 'th is the number ' + str(60 + y) + ' day of 2020.')
+  elif x == 4:
+    print ('April ' + str(y) + 'th is the number ' + str(91 + y) + ' day of 2020.')
+  elif x == 5:
+    print ('May ' + str(y) + 'th is the number ' + str(120 + y) + ' day of 2020.')
+  elif x == 6:
+    print ('June ' + str(y) + 'th is the number ' + str(152 + y) + ' day of 2020.')
+  elif x == 7:
+    print ('July ' + str(y) + 'th is the number ' + str(182 + y) + ' day of 2020.')
+  elif x == 8:
+    print ('August ' + str(y) + 'th is the number ' + str(213 + y) + ' day of 2020.')
+  elif x == 9:
+    print ('September ' + str(y) + 'th is the number ' + str(243 + y) + ' day of 2020.')
+  elif x == 10:
+    print ('October ' + str(y) + 'th is the number ' + str(274 + y) + ' day of 2020.')
+  elif x == 11:
+    print ('November ' + str(y) + 'th is the number ' + str(304 + y) + ' day of 2020.')
+  else: 
+    print ('December ' + str(y) + 'th is the number ' + str(335 + y) + ' day of 2020.')
+    
+monthDayToNumber(monthNumber, dayNumber)
