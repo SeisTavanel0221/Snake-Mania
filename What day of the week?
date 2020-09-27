@@ -1,0 +1,241 @@
+monthDay = int(input("Please enter a number day of the month. "))
+monthName = input("Please enter the month you wish to use with a capital first letter. ")
+      
+def whatDayOfTheWeek(x,y):
+  if x == "January":
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "Febuary":
+    y = 31 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "March":
+    y = 60 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "April":
+    y = 91 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "May":
+    y = 120 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "June":
+    y = 152 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "July":
+    y = 182 + y
+    while x > 7:
+      x = x - 7
+    while x <= 7:
+      if x == 1:
+        return "Wednesday"
+      elif x == 2:
+        return "Thursday"
+      elif x == 3:
+        return "Friday"
+      elif x == 4:
+        return "Saturday"
+      elif x == 5:
+        return "Sunday"
+      elif x == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "August":
+    y = 213 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "September":
+    y = 243 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "October":
+    y = 274 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "November":
+    y = 304 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  if x == "December":
+    y = 335 + y
+    while y > 7:
+      y = y - 7
+    while y <= 7:
+      if y == 1:
+        return "Wednesday"
+      elif y == 2:
+        return "Thursday"
+      elif y == 3:
+        return "Friday"
+      elif y == 4:
+        return "Saturday"
+      elif y == 5:
+        return "Sunday"
+      elif y == 6:
+        return "Monday"
+      else:
+        return "Tuesday"
+  else:
+    return "Wrong"
+    
+
+
+if whatDayOfTheWeek(monthName, monthDay) == "Wrong":
+  monthName = input("Make sure the month is spelled correctly and the first letter is capitalized. ")
+  
+if whatDayOfTheWeek(monthName, monthDay) != "Wrong":
+  print (monthName + ' ' + str(monthDay) + 'th, 2020 is a ' + whatDayOfTheWeek(monthName, monthDay) + '.')  
