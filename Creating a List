@@ -1,0 +1,13 @@
+listFood = []
+
+while True:
+  print ('Enter the name of a food to add to the list or enter stop to end the list.')
+  food = input()
+  if food == 'stop':
+    break
+  listFood = listFood + [food]
+  
+print ('The foods that you listed are:')
+
+for food in listFood:
+  print (food)
