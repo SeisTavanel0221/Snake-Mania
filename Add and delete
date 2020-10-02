@@ -1,0 +1,25 @@
+listFood = []
+
+print ('Enter add if you want to add food to the list. Enter delete if you want to take food off the list.')
+direction = input()
+
+while direction == 'add':
+  print ('Enter the name of a food to add to the list or enter stop to end the list.')
+  food = input()
+  if food == 'stop':
+    direction = input("Enter delete if you want to take something off of the list. If you are done with the list enter done.")
+    break
+  listFood = listFood + [food]
+  
+while direction == 'delete':
+  print ('Enter the name of a food to take off of the list or enter stop to end the list.')
+  out = input()
+  if out == 'stop':
+    direction = input("Enter add if you want to add something to the list. If you are done with the list enter done.")
+    break
+  listFood.remove (out)
+
+if direction == 'done':
+  print ('The foods that you listed are:')
+  for food in listFood:
+    print (food)
