@@ -1,0 +1,23 @@
+words = input("Please enter a string to be evaluated. ")
+
+def hasVowels(y):
+  for x in y:
+    if "a" in y:
+      return True
+    elif "e" in y:
+      return True
+    elif "i" in y:
+      return True
+    elif "o" in y:
+      return True
+    elif "u" in y:
+      return True
+    elif "y" in y:
+      return True
+    else:
+      return False
+      
+if hasVowels(words):
+  print ("The string " + words + " has at least one vowel.")
+else:
+  print ("The string " + words + " does not have any vowels.")
