@@ -1,0 +1,8 @@
+words = "Hello World!"
+print (words)
+
+words = words.upper()
+print (words)
+
+words = words.lower()
+print (words)
