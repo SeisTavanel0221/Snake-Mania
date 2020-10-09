@@ -2,22 +2,20 @@ words = input("Please enter a string to be evaluated. ")
 
 def countVowels(y):
   numVowels = 0
-  for x in y:
-    if "a" in y:
+  for x in y.lower():
+    if x == "a":
       numVowels = numVowels + 1
-    elif "e" in y:
+    elif x == "e":
       numVowels = numVowels + 1
-    elif "i" in y:
+    elif x == "i":
       numVowels = numVowels + 1
-    elif "o" in y:
+    elif x == "o":
       numVowels = numVowels + 1
-    elif "u" in y:
+    elif x == "u":
       numVowels = numVowels + 1
-    elif "y" in y:
+    elif x == 'y':
       numVowels = numVowels + 1
   return numVowels
-      
-if hasVowels(words):
-  print ("The string " + words + " has at least one vowel.")
-else:
-  print ("The string " + words + " does not have any vowels.")
+
+
+print ("The string " + words + " has " + str(countVowels(words)) + " vowels.")
