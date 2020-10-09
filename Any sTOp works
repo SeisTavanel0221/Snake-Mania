@@ -1,0 +1,8 @@
+wordInput = input("Please enter a word to add to the list. ")
+wordsList = []
+
+while wordInput.lower() != "stop":
+  wordsList = wordsList + [wordInput]
+  wordInput = input("Please enter another word to add to the list or stop to see the list. ")
+  
+print (wordsList)
