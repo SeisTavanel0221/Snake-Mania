@@ -1,0 +1,29 @@
+wordInput = input("Please enter a word to add to the list. \nThis list will be evaluated for the number of vowels it contains. ")
+wordsList = []
+
+
+def countVowels(z):
+  numVowels = 0
+  for w in z:
+    wordInList = str(w)
+    for x in wordInList.lower():
+      if x == "a":
+        numVowels = numVowels + 1
+      elif x == "e":
+        numVowels = numVowels + 1
+      elif x == "i":
+        numVowels = numVowels + 1
+      elif x == "o":
+        numVowels = numVowels + 1
+      elif x == "u":
+        numVowels = numVowels + 1
+      elif x == 'y':
+        numVowels = numVowels + 1
+  return numVowels
+
+
+while wordInput.lower() != "stop":
+  wordsList = wordsList + [wordInput]
+  wordInput = input("Please enter another word to add to the list or stop to evaluate the list. ")
+  
+print ("This list has " + str(countVowels(wordsList)) + " vowels.")
