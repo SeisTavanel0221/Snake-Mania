@@ -1,0 +1,23 @@
+def choose_word():
+  word = "balloon"
+  return word
+  
+
+secretWord = choose_word
+guessesLeft = 0
+
+def blankCreator(y):
+  blankList = []
+  blankString = ""
+  for x in y:
+    blankList = blankList + ["_ "]
+  blankString = blankString.join(blankList)
+  return blankString
+
+while guessesLeft > 0:
+    letterGuess = input("Please guess a letter. ")
+    print (letterGuess)
+    guessesLeft = guessesLeft - 1
+
+print (choose_word())
+print (blankCreator(choose_word()))
