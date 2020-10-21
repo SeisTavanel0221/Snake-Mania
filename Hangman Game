@@ -19,5 +19,32 @@ while guessesLeft > 0:
     print (letterGuess)
     guessesLeft = guessesLeft - 1
 
+def print_body(number):
+  if number == 1:
+    print("  (_)\nYou have 5 guesses left.")
+  if number == 2:
+    print("  (_)  ")
+    print("   |   ")
+    print("   |\nYou have 4 guesses left.")
+  if number == 3:
+    print("  (_)  ")
+    print("  /|   ")
+    print("   |\nYou have 3 guesses left.")
+  if number == 4:
+    print("  (_)  ")
+    print("  /|\  ")
+    print("   |\nYou have 2 guesses left.")
+  if number == 5:
+    print("  (_)  ")
+    print("  /|\  ")
+    print("   |  ")
+    print("  /\nYou have 1 guesses left.")
+  if number == 6:
+    print("  (_)  ")
+    print("  /|\  ")
+    print("   |  ")
+    print("  / \  ") 
+    print("Game Over.")
+
 print (choose_word())
 print (blankCreator(choose_word()))
