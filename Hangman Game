@@ -45,6 +45,22 @@ def print_body(number):
     print("   |  ")
     print("  / \  ") 
     print("Game Over.")
+    
+def findLetter(word, letter, blank):
+  if letter in word:
+    letterIndex = word.index(letter)
+    blank[letterIndex] = letter
+    return blank
+  else:
+    return blank
+    
+def findLetter(x, y, z):
+  while y in x:
+    letterIndex = x.index(y)
+    z[letterIndex] = list(y)
+    return z
+  else:
+    return z
 
 print (choose_word())
 print (blankCreator(choose_word()))
