@@ -1,6 +1,14 @@
+import urllib.request
+import random
+
 def choose_word():
-  word = "balloon"
-  return word
+  file_name = "https://raw.githubusercontent.com/mlepinski/Python-Worksheets/master/coolWords.txt"
+  my_file = urllib.request.urlopen(file_name)
+  long_string = my_file.read()
+  long_string = long_string.decode("utf-8")
+  word_list = long_string.split("\n")
+  randomWord = random.choice(word_list)
+  return randomWord.lower()
   
 guessesLeft = 0
 secretWord = choose_word()
@@ -13,7 +21,7 @@ def blankCreator(y):
     blankList = blankList + ["_ "]
   return blankList
 
-def print_body(number):
+def print_body(number, y):
   if number == 1:
     print("  ('_')\nYou have 5 guesses left.")
   if number == 2:
@@ -38,7 +46,7 @@ def print_body(number):
     print("   /|\  ")
     print("    |  ")
     print("   / \  ") 
-    print("Game Over.")
+    print("Game Over.\nThe secret word was " + y)
     
 def findLetter(x, y, z):
   wordList = list(x)
@@ -54,17 +62,17 @@ blankOriginal = blankString
 
 while guessesLeft < 6 :
   print (blankString)
-  print (blankOriginal)
   letterGuess = input("Please guess a letter. The blanks represent missing letters. ")
   blankList = findLetter(secretWord, letterGuess, blankList)
   blankString =  " ".join(blankList)
   if blankOriginal == blankString:
     guessesLeft = guessesLeft + 1
-    print_body(guessesLeft)
+    print_body(guessesLeft, secretWord)
   else:
     blankOriginal = blankString
     if "_" not in blankString:
+      print(blankString)
       break
 
-if blankOriginal == blankString:
+if blankOriginal == blankString and guessesLeft != 6:
   print("You Win!")
