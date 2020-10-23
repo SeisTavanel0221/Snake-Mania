@@ -2,65 +2,69 @@ def choose_word():
   word = "balloon"
   return word
   
-
-secretWord = choose_word
 guessesLeft = 0
+secretWord = choose_word()
+blankString = " "
 
 def blankCreator(y):
   blankList = []
   blankString = ""
   for x in y:
     blankList = blankList + ["_ "]
-  blankString = blankString.join(blankList)
-  return blankString
-
-while guessesLeft > 0:
-    letterGuess = input("Please guess a letter. ")
-    print (letterGuess)
-    guessesLeft = guessesLeft - 1
+  return blankList
 
 def print_body(number):
   if number == 1:
-    print("  (_)\nYou have 5 guesses left.")
+    print("  ('_')\nYou have 5 guesses left.")
   if number == 2:
-    print("  (_)  ")
-    print("   |   ")
-    print("   |\nYou have 4 guesses left.")
+    print("  ('_')  ")
+    print("    |   ")
+    print("    |\nYou have 4 guesses left.")
   if number == 3:
-    print("  (_)  ")
-    print("  /|   ")
-    print("   |\nYou have 3 guesses left.")
+    print("  ('_')  ")
+    print("   /|   ")
+    print("    |\nYou have 3 guesses left.")
   if number == 4:
-    print("  (_)  ")
-    print("  /|\  ")
-    print("   |\nYou have 2 guesses left.")
+    print("  ('_')  ")
+    print("   /|\  ")
+    print("    |\nYou have 2 guesses left.")
   if number == 5:
-    print("  (_)  ")
-    print("  /|\  ")
-    print("   |  ")
-    print("  /\nYou have 1 guesses left.")
+    print("  ('_')  ")
+    print("   /|\  ")
+    print("    |  ")
+    print("   /\nYou have 1 guesses left.")
   if number == 6:
-    print("  (_)  ")
-    print("  /|\  ")
-    print("   |  ")
-    print("  / \  ") 
+    print("  ('_')  ")
+    print("   /|\  ")
+    print("    |  ")
+    print("   / \  ") 
     print("Game Over.")
     
-def findLetter(word, letter, blank):
-  if letter in word:
-    letterIndex = word.index(letter)
-    blank[letterIndex] = letter
-    return blank
-  else:
-    return blank
-    
 def findLetter(x, y, z):
-  while y in x:
-    letterIndex = x.index(y)
-    z[letterIndex] = list(y)
-    return z
-  else:
-    return z
+  wordList = list(x)
+  while y in wordList:
+    letterIndex = wordList.index(y)
+    z[letterIndex] = y
+    wordList[letterIndex] = "_"
+  return z
+    
+blankList = blankCreator(secretWord)
+blankString = blankString.join(blankList)
+blankOriginal = blankString
 
-print (choose_word())
-print (blankCreator(choose_word()))
+while guessesLeft < 6 :
+  print (blankString)
+  print (blankOriginal)
+  letterGuess = input("Please guess a letter. The blanks represent missing letters. ")
+  blankList = findLetter(secretWord, letterGuess, blankList)
+  blankString =  " ".join(blankList)
+  if blankOriginal == blankString:
+    guessesLeft = guessesLeft + 1
+    print_body(guessesLeft)
+  else:
+    blankOriginal = blankString
+    if "_" not in blankString:
+      break
+
+if blankOriginal == blankString:
+  print("You Win!")
