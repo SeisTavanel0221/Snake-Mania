@@ -6,858 +6,950 @@ from math import sqrt
 win = GraphWin("Whoops!", 700, 700)
 
 def circleDistance(x,y):
-    center1 = x.getCenter()
-    center2 = y.getCenter()
-    x1 = center1.getX()
-    y1 = center1.getY()
-    x2 = center2.getX()
-    y2 = center2.getY()
-    distance = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
-    return distance
+        center1 = x.getCenter()
+        center2 = y.getCenter()
+        x1 = center1.getX()
+        y1 = center1.getY()
+        x2 = center2.getX()
+        y2 = center2.getY()
+        distance = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
+        return distance
 
-y = 0
+def gamePlay():
 
-x = randint(1,4) 
+    y = 0
 
-#x = 1  #Test routing number
+    x = randint(1,4) 
 
-if x == 1:
-    text1 = Text(Point(350,350),"Get the blue circle!")
-    text1.setSize(35)
-    text1.draw(win)
-    sleep(4)
-    text1.undraw()
-elif x == 2:
-    text2 = Text(Point(350,350),"Get the red circle!")
-    text2.setSize(35)
-    text2.draw(win)
-    sleep(4)
-    text2.undraw()
-elif x == 3:
-    text3 = Text(Point(350,350),"Get the green circle!")
-    text3.setSize(35)
-    text3.draw(win)
-    sleep(4)
-    text3.undraw()
-elif x == 4:
-    text4 = Text(Point(350,350),"Get the black circle!")
-    text4.setSize(35)
-    text4.draw(win)
-    sleep(4)
-    text4.undraw()
+    #x = 1  #Test routing number
 
-centerPoint = Circle(Point(350,350),1)
+    if x == 1:
+        text1 = Text(Point(350,350),"Get the blue circle!")
+        text1.setSize(35)
+        text1.draw(win)
+        sleep(4)
+        text1.undraw()
+    elif x == 2:
+        text2 = Text(Point(350,350),"Get the red circle!")
+        text2.setSize(35)
+        text2.draw(win)
+        sleep(4)
+        text2.undraw()
+    elif x == 3:
+        text3 = Text(Point(350,350),"Get the green circle!")
+        text3.setSize(35)
+        text3.draw(win)
+        sleep(4)
+        text3.undraw()
+    elif x == 4:
+        text4 = Text(Point(350,350),"Get the black circle!")
+        text4.setSize(35)
+        text4.draw(win)
+        sleep(4)
+        text4.undraw()
 
-circleBorder = Circle(Point(350,350),340)
-circleBorder.draw(win)
+    centerPoint = Circle(Point(350,350),1)
 
-def cornerDistance(ball):
-    cornerA = Circle(Point(350,0), 1)
-    cornerB = Circle(Point(0,350),1)
-    cornerC = Circle(Point(700,350),1)
-    cornerD = Circle(Point(350,700),1)
-    A = circleDistance(ball, cornerA)
-    B = circleDistance(ball, cornerB)
-    C = circleDistance(ball, cornerC)
-    D = circleDistance(ball, cornerD)
-    if A < D and B == C:
-        return "Top"
-    if D < A and B == C:
-        return "Bottom"
-    if A < D and B < C:
-        return "Top Left"
-    if A < D and C < B:
-        return "Top Right"
-    if D < A and B < C:
-        return "Bottom Left"
-    if D < A and C < B:
-        return "Bottom Right"
-    if A == D and B < C:
-        return "Left"
-    if A == D and C < B:
-        return "Right"
+    circleBorder = Circle(Point(350,350),340)
+    circleBorder.draw(win)
+
+    def cornerDistance(ball):
+        cornerA = Circle(Point(350,0), 1)
+        cornerB = Circle(Point(0,350),1)
+        cornerC = Circle(Point(700,350),1)
+        cornerD = Circle(Point(350,700),1)
+        A = circleDistance(ball, cornerA)
+        B = circleDistance(ball, cornerB)
+        C = circleDistance(ball, cornerC)
+        D = circleDistance(ball, cornerD)
+        if A < D and B == C:
+            return "Top"
+        if D < A and B == C:
+            return "Bottom"
+        if A < D and B < C:
+            return "Top Left"
+        if A < D and C < B:
+            return "Top Right"
+        if D < A and B < C:
+            return "Bottom Left"
+        if D < A and C < B:
+            return "Bottom Right"
+        if A == D and B < C:
+            return "Left"
+        if A == D and C < B:
+            return "Right"
     
-def speedIncrease(speedValue):
-    if speedValue > 0:
-        return (speedValue + 1)
-    if speedValue < 0:
-        return (speedValue - 1)
-    else:
-        return speedValue
-    
-circle1 = Circle(Point(randint(100,600),randint(100,600)),25)
-circle1.draw(win)
-circle1.setFill("blue")
-
-circle2 = Circle(Point(randint(100,600),randint(100,600)),25)
-circle2.draw(win)
-circle2.setFill("red")
-
-circle3 = Circle(Point(randint(100,600),randint(100,600)),25)
-circle3.draw(win)
-circle3.setFill("green")
-
-circle4 = Circle(Point(randint(100,600),randint(100,600)),25)
-circle4.draw(win)
-circle4.setFill("black")
-
-textWin = Text(Point(350,350),"You Got It!")
-textWin.setSize(35)
-
-textWrong = Text(Point(350,350),"Wrong One!")
-textWrong.setSize(35)
-
-textMiss = Text(Point(350,350),"Try Again!")
-textMiss.setSize(35)
-
-randX = randint(-6,6)
-randY = randint(-6,6)
-randA = randint(-6,6)
-randB = randint(-6,6)
-randI = randint(-6,6)
-randO = randint(-6,6)
-randM = randint(-6,6)
-randN = randint(-6,6)
-
-tNot = time.time()
-mouse_point = None
-while x == 1:
-    if circleDistance(circle1, centerPoint) >= 325:
-        location1 = cornerDistance(circle1)
-        if location1 == "Top":
-            randX = 0
-            randY = (0,6)
-        if location1 == "Bottom":
-            randX = 0
-            randY = randint(-6,0)
-        if location1 == "Left":
-            randX = randint(0,6)
-            randY = 0
-        if location1 == "Right":
-            randX = randint(-6,0)
-            randY = 0
-        if location1 == "Top Left":
-            randX = randint(0,6)
-            randY = randint(0,6)
-        if location1 == "Top Right":
-            randX = randint(-6,0)
-            randY = randint(0,6)
-        if location1 == "Bottom Left":
-            randX = randint(0,6)
-            randY = randint(-6,0)
-        if location1 == "Bottom Right":
-            randX = randint(-6,0)
-            randY = randint(-6,0)
-    if circleDistance(circle2, centerPoint) >= 325:
-        location2 = cornerDistance(circle2)
-        if location2 == "Top":
-            randA = 0
-            randB = randint(0,6)
-        if location2 == "Bottom":
-            randA = 0
-            randB = randint(-6,0)
-        if location2 == "Left":
-            randA = randint(0,6)
-            randB = 0
-        if location2 == "Right":
-            randA = randint(-6,0)
-            randB = 0
-        if location2 == "Top Left":
-            randA = randint(0,6)
-            randB = randint(0,6)
-        if location2 == "Top Right":
-            randA = randint(-6,0)
-            randB = randint(0,6)
-        if location2 == "Bottom Left":
-            randA = randint(0,6)
-            randB = randint(-6,0)
-        if location2 == "Bottom Right":
-            randA = randint(-6,0)
-            randB = randint(-6,0)
-    if circleDistance(circle3, centerPoint) >= 325:
-        location3 = cornerDistance(circle3)
-        if location3 == "Top":
-            randI = 0
-            randO = randint(0,6)
-        if location3 == "Bottom":
-            randI = 0
-            randO = randint(-6,0)
-        if location3 == "Left":
-            randI = randint(0,6)
-            randO = 0
-        if location3 == "Right":
-            randI = randint(-6,0)
-            randO = 0
-        if location3 == "Top Left":
-            randI = randint(0,6)
-            randO = randint(0,6)
-        if location3 == "Top Right":
-            randI = randint(-6,0)
-            randO = randint(0,6)
-        if location3 == "Bottom Left":
-            randI = randint(0,6)
-            randO = randint(-6,0)
-        if location3 == "Bottom Right":
-            randI = randint(-6,0)
-            randO = randint(-6,0)
-    if circleDistance(circle4, centerPoint) >= 325:
-        location4 = cornerDistance(circle4)
-        if location4 == "Top":
-            randM = 0
-            randN = randint(0,6)
-        if location4 == "Bottom":
-            randM = 0
-            randN = randint(-6,0)
-        if location4 == "Left":
-            randM = randint(0,6)
-            randN = 0
-        if location4 == "Right":
-            randM = randint(-6,0)
-            randN = 0
-        if location4 == "Top Left":
-            randM = randint(0,6)
-            randN = randint(0,6)
-        if location4 == "Top Right":
-            randM = randint(-6,0)
-            randN = randint(0,6)
-        if location4 == "Bottom Left":
-            randM = randint(0,6)
-            randN = randint(-6,0)
-        if location4 == "Bottom Right":
-            randM = randint(-6,0)
-            randN = randint(-6,0)
-    if circleDistance(circle1, circle2) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-    if circleDistance(circle1, circle4) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle1, circle3) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle3) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle4) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle3, circle4) <=50:
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    circle1.move(randX, randY)
-    circle2.move(randA, randB)
-    circle3.move(randI, randO)
-    circle4.move(randM, randN)
-    
-    randX = speedIncrease(randX)
-    randY = speedIncrease(randY)
-    randA = speedIncrease(randA)
-    randB = speedIncrease(randB)
-    randI = speedIncrease(randI)
-    randO = speedIncrease(randO)
-    randM = speedIncrease(randM)
-    randN = speedIncrease(randN)
-    
-    mouse_point = win.checkMouse()
-    if mouse_point != None:
-        mouse_point = Circle(mouse_point,1)
-        if circleDistance(circle1,mouse_point) <= 25:
-            textWin.draw(win)
-            sleep(4)
-            textWin.undraw()
-            y = y + 1
-            x = 5
-        elif circleDistance(circle2,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle3,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle4,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
+    def speedIncrease(speedValue):
+        if speedValue > 0:
+            return (speedValue + 1)
+        if speedValue < 0:
+            return (speedValue - 1)
         else:
-            textMiss.draw(win)
-            sleep(4)
-            textMiss.undraw()
-            y = y + 1
-            mouse_point = None
+            return speedValue
     
-while x == 2:
-    if circleDistance(circle1, centerPoint) >= 325:
-        location1 = cornerDistance(circle1)
-        if location1 == "Top":
-            randX = 0
-            randY = (0,6)
-        if location1 == "Bottom":
-            randX = 0
-            randY = randint(-6,0)
-        if location1 == "Left":
-            randX = randint(0,6)
-            randY = 0
-        if location1 == "Right":
-            randX = randint(-6,0)
-            randY = 0
-        if location1 == "Top Left":
-            randX = randint(0,6)
-            randY = randint(0,6)
-        if location1 == "Top Right":
-            randX = randint(-6,0)
-            randY = randint(0,6)
-        if location1 == "Bottom Left":
-            randX = randint(0,6)
-            randY = randint(-6,0)
-        if location1 == "Bottom Right":
-            randX = randint(-6,0)
-            randY = randint(-6,0)
-    if circleDistance(circle2, centerPoint) >= 325:
-        location2 = cornerDistance(circle2)
-        if location2 == "Top":
-            randA = 0
-            randB = randint(0,6)
-        if location2 == "Bottom":
-            randA = 0
-            randB = randint(-6,0)
-        if location2 == "Left":
-            randA = randint(0,6)
-            randB = 0
-        if location2 == "Right":
-            randA = randint(-6,0)
-            randB = 0
-        if location2 == "Top Left":
-            randA = randint(0,6)
-            randB = randint(0,6)
-        if location2 == "Top Right":
-            randA = randint(-6,0)
-            randB = randint(0,6)
-        if location2 == "Bottom Left":
-            randA = randint(0,6)
-            randB = randint(-6,0)
-        if location2 == "Bottom Right":
-            randA = randint(-6,0)
-            randB = randint(-6,0)
-    if circleDistance(circle3, centerPoint) >= 325:
-        location3 = cornerDistance(circle3)
-        if location3 == "Top":
-            randI = 0
-            randO = randint(0,6)
-        if location3 == "Bottom":
-            randI = 0
-            randO = randint(-6,0)
-        if location3 == "Left":
-            randI = randint(0,6)
-            randO = 0
-        if location3 == "Right":
-            randI = randint(-6,0)
-            randO = 0
-        if location3 == "Top Left":
-            randI = randint(0,6)
-            randO = randint(0,6)
-        if location3 == "Top Right":
-            randI = randint(-6,0)
-            randO = randint(0,6)
-        if location3 == "Bottom Left":
-            randI = randint(0,6)
-            randO = randint(-6,0)
-        if location3 == "Bottom Right":
-            randI = randint(-6,0)
-            randO = randint(-6,0)
-    if circleDistance(circle4, centerPoint) >= 325:
-        location4 = cornerDistance(circle4)
-        if location4 == "Top":
-            randM = 0
-            randN = randint(0,6)
-        if location4 == "Bottom":
-            randM = 0
-            randN = randint(-6,0)
-        if location4 == "Left":
-            randM = randint(0,6)
-            randN = 0
-        if location4 == "Right":
-            randM = randint(-6,0)
-            randN = 0
-        if location4 == "Top Left":
-            randM = randint(0,6)
-            randN = randint(0,6)
-        if location4 == "Top Right":
-            randM = randint(-6,0)
-            randN = randint(0,6)
-        if location4 == "Bottom Left":
-            randM = randint(0,6)
-            randN = randint(-6,0)
-        if location4 == "Bottom Right":
-            randM = randint(-6,0)
-            randN = randint(-6,0)
-    if circleDistance(circle1, circle2) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-    if circleDistance(circle1, circle4) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle1, circle3) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle3) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle4) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle3, circle4) <=50:
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    circle1.move(randX, randY)
-    circle2.move(randA, randB)
-    circle3.move(randI, randO)
-    circle4.move(randM, randN)
-    
-    randX = speedIncrease(randX)
-    randY = speedIncrease(randY)
-    randA = speedIncrease(randA)
-    randB = speedIncrease(randB)
-    randI = speedIncrease(randI)
-    randO = speedIncrease(randO)
-    randM = speedIncrease(randM)
-    randN = speedIncrease(randN)
-    
-    mouse_point = win.checkMouse()
-    if mouse_point != None:
-        mouse_point = Circle(mouse_point,1)
-        if circleDistance(circle1,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle2,mouse_point) <= 25:
-            textWin.draw(win)
-            sleep(4)
-            textWin.undraw()
-            y = y + 1
-            x = 5
-        elif circleDistance(circle3,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle4,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        else:
-            textMiss.draw(win)
-            sleep(4)
-            textMiss.undraw()
-            y = y + 1
-            mouse_point = None
-    
-while x == 3:
-    if circleDistance(circle1, centerPoint) >= 325:
-        location1 = cornerDistance(circle1)
-        if location1 == "Top":
-            randX = 0
-            randY = (0,6)
-        if location1 == "Bottom":
-            randX = 0
-            randY = randint(-6,0)
-        if location1 == "Left":
-            randX = randint(0,6)
-            randY = 0
-        if location1 == "Right":
-            randX = randint(-6,0)
-            randY = 0
-        if location1 == "Top Left":
-            randX = randint(0,6)
-            randY = randint(0,6)
-        if location1 == "Top Right":
-            randX = randint(-6,0)
-            randY = randint(0,6)
-        if location1 == "Bottom Left":
-            randX = randint(0,6)
-            randY = randint(-6,0)
-        if location1 == "Bottom Right":
-            randX = randint(-6,0)
-            randY = randint(-6,0)
-    if circleDistance(circle2, centerPoint) >= 325:
-        location2 = cornerDistance(circle2)
-        if location2 == "Top":
-            randA = 0
-            randB = randint(0,6)
-        if location2 == "Bottom":
-            randA = 0
-            randB = randint(-6,0)
-        if location2 == "Left":
-            randA = randint(0,6)
-            randB = 0
-        if location2 == "Right":
-            randA = randint(-6,0)
-            randB = 0
-        if location2 == "Top Left":
-            randA = randint(0,6)
-            randB = randint(0,6)
-        if location2 == "Top Right":
-            randA = randint(-6,0)
-            randB = randint(0,6)
-        if location2 == "Bottom Left":
-            randA = randint(0,6)
-            randB = randint(-6,0)
-        if location2 == "Bottom Right":
-            randA = randint(-6,0)
-            randB = randint(-6,0)
-    if circleDistance(circle3, centerPoint) >= 325:
-        location3 = cornerDistance(circle3)
-        if location3 == "Top":
-            randI = 0
-            randO = randint(0,6)
-        if location3 == "Bottom":
-            randI = 0
-            randO = randint(-6,0)
-        if location3 == "Left":
-            randI = randint(0,6)
-            randO = 0
-        if location3 == "Right":
-            randI = randint(-6,0)
-            randO = 0
-        if location3 == "Top Left":
-            randI = randint(0,6)
-            randO = randint(0,6)
-        if location3 == "Top Right":
-            randI = randint(-6,0)
-            randO = randint(0,6)
-        if location3 == "Bottom Left":
-            randI = randint(0,6)
-            randO = randint(-6,0)
-        if location3 == "Bottom Right":
-            randI = randint(-6,0)
-            randO = randint(-6,0)
-    if circleDistance(circle4, centerPoint) >= 325:
-        location4 = cornerDistance(circle4)
-        if location4 == "Top":
-            randM = 0
-            randN = randint(0,6)
-        if location4 == "Bottom":
-            randM = 0
-            randN = randint(-6,0)
-        if location4 == "Left":
-            randM = randint(0,6)
-            randN = 0
-        if location4 == "Right":
-            randM = randint(-6,0)
-            randN = 0
-        if location4 == "Top Left":
-            randM = randint(0,6)
-            randN = randint(0,6)
-        if location4 == "Top Right":
-            randM = randint(-6,0)
-            randN = randint(0,6)
-        if location4 == "Bottom Left":
-            randM = randint(0,6)
-            randN = randint(-6,0)
-        if location4 == "Bottom Right":
-            randM = randint(-6,0)
-            randN = randint(-6,0)
-    if circleDistance(circle1, circle2) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-    if circleDistance(circle1, circle4) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle1, circle3) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle3) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle4) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle3, circle4) <=50:
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    circle1.move(randX, randY)
-    circle2.move(randA, randB)
-    circle3.move(randI, randO)
-    circle4.move(randM, randN)
-    
-    randX = speedIncrease(randX)
-    randY = speedIncrease(randY)
-    randA = speedIncrease(randA)
-    randB = speedIncrease(randB)
-    randI = speedIncrease(randI)
-    randO = speedIncrease(randO)
-    randM = speedIncrease(randM)
-    randN = speedIncrease(randN)
-    
-    mouse_point = win.checkMouse()
-    if mouse_point != None:
-        mouse_point = Circle(mouse_point,1)
-        if circleDistance(circle1,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle2,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle3,mouse_point) <= 25:
-            textWin.draw(win)
-            sleep(4)
-            textWin.undraw()
-            y = y + 1
-            x = 5
-        elif circleDistance(circle4,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        else:
-            textMiss.draw(win)
-            sleep(4)
-            textMiss.undraw()
-            y = y + 1
-            mouse_point = None
+    circle1 = Circle(Point(randint(100,600),randint(100,600)),25)
+    circle1.draw(win)
+    circle1.setFill("blue")
 
-while x == 4:
-    if circleDistance(circle1, centerPoint) >= 325:
-        location1 = cornerDistance(circle1)
-        if location1 == "Top":
-            randX = 0
-            randY = (0,6)
-        if location1 == "Bottom":
-            randX = 0
-            randY = randint(-6,0)
-        if location1 == "Left":
-            randX = randint(0,6)
-            randY = 0
-        if location1 == "Right":
-            randX = randint(-6,0)
-            randY = 0
-        if location1 == "Top Left":
-            randX = randint(0,6)
-            randY = randint(0,6)
-        if location1 == "Top Right":
-            randX = randint(-6,0)
-            randY = randint(0,6)
-        if location1 == "Bottom Left":
-            randX = randint(0,6)
-            randY = randint(-6,0)
-        if location1 == "Bottom Right":
-            randX = randint(-6,0)
-            randY = randint(-6,0)
-    if circleDistance(circle2, centerPoint) >= 325:
-        location2 = cornerDistance(circle2)
-        if location2 == "Top":
-            randA = 0
-            randB = randint(0,6)
-        if location2 == "Bottom":
-            randA = 0
-            randB = randint(-6,0)
-        if location2 == "Left":
-            randA = randint(0,6)
-            randB = 0
-        if location2 == "Right":
-            randA = randint(-6,0)
-            randB = 0
-        if location2 == "Top Left":
-            randA = randint(0,6)
-            randB = randint(0,6)
-        if location2 == "Top Right":
-            randA = randint(-6,0)
-            randB = randint(0,6)
-        if location2 == "Bottom Left":
-            randA = randint(0,6)
-            randB = randint(-6,0)
-        if location2 == "Bottom Right":
-            randA = randint(-6,0)
-            randB = randint(-6,0)
-    if circleDistance(circle3, centerPoint) >= 325:
-        location3 = cornerDistance(circle3)
-        if location3 == "Top":
-            randI = 0
-            randO = randint(0,6)
-        if location3 == "Bottom":
-            randI = 0
-            randO = randint(-6,0)
-        if location3 == "Left":
-            randI = randint(0,6)
-            randO = 0
-        if location3 == "Right":
-            randI = randint(-6,0)
-            randO = 0
-        if location3 == "Top Left":
-            randI = randint(0,6)
-            randO = randint(0,6)
-        if location3 == "Top Right":
-            randI = randint(-6,0)
-            randO = randint(0,6)
-        if location3 == "Bottom Left":
-            randI = randint(0,6)
-            randO = randint(-6,0)
-        if location3 == "Bottom Right":
-            randI = randint(-6,0)
-            randO = randint(-6,0)
-    if circleDistance(circle4, centerPoint) >= 325:
-        location4 = cornerDistance(circle4)
-        if location4 == "Top":
-            randM = 0
-            randN = randint(0,6)
-        if location4 == "Bottom":
-            randM = 0
-            randN = randint(-6,0)
-        if location4 == "Left":
-            randM = randint(0,6)
-            randN = 0
-        if location4 == "Right":
-            randM = randint(-6,0)
-            randN = 0
-        if location4 == "Top Left":
-            randM = randint(0,6)
-            randN = randint(0,6)
-        if location4 == "Top Right":
-            randM = randint(-6,0)
-            randN = randint(0,6)
-        if location4 == "Bottom Left":
-            randM = randint(0,6)
-            randN = randint(-6,0)
-        if location4 == "Bottom Right":
-            randM = randint(-6,0)
-            randN = randint(-6,0)
-    if circleDistance(circle1, circle2) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-    if circleDistance(circle1, circle4) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle1, circle3) <=50:
-        randX = randint(-6,6)
-        randY = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle3) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-    if circleDistance(circle2, circle4) <=50:
-        randA = randint(-6,6)
-        randB = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    if circleDistance(circle3, circle4) <=50:
-        randI = randint(-6,6)
-        randO = randint(-6,6)
-        randM = randint(-6,6)
-        randN = randint(-6,6)
-    circle1.move(randX, randY)
-    circle2.move(randA, randB)
-    circle3.move(randI, randO)
-    circle4.move(randM, randN)
+    circle2 = Circle(Point(randint(100,600),randint(100,600)),25)
+    circle2.draw(win)
+    circle2.setFill("red")
+
+    circle3 = Circle(Point(randint(100,600),randint(100,600)),25)
+    circle3.draw(win)
+    circle3.setFill("green")
+
+    circle4 = Circle(Point(randint(100,600),randint(100,600)),25)
+    circle4.draw(win)
+    circle4.setFill("black")
+
+    textWin = Text(Point(350,350),"You Got It!")
+    textWin.setSize(35)
+
+    textWrong = Text(Point(350,350),"Wrong One!")
+    textWrong.setSize(35)
+
+    textMiss = Text(Point(350,350),"Try Again!")
+    textMiss.setSize(35)
+
+    randX = randint(-6,6)
+    randY = randint(-6,6)
+    randA = randint(-6,6)
+    randB = randint(-6,6)
+    randI = randint(-6,6)
+    randO = randint(-6,6)
+    randM = randint(-6,6)
+    randN = randint(-6,6)
+
+    tNot = time.time()
+    mouse_point = None
+    while x == 1:
+        if circleDistance(circle1, centerPoint) >= 325:
+            location1 = cornerDistance(circle1)
+            if location1 == "Top":
+                randX = 0
+                randY = (0,6)
+            if location1 == "Bottom":
+                randX = 0
+                randY = randint(-6,0)
+            if location1 == "Left":
+                randX = randint(0,6)
+                randY = 0
+            if location1 == "Right":
+                randX = randint(-6,0)
+                randY = 0
+            if location1 == "Top Left":
+                randX = randint(0,6)
+                randY = randint(0,6)
+            if location1 == "Top Right":
+                randX = randint(-6,0)
+                randY = randint(0,6)
+            if location1 == "Bottom Left":
+                randX = randint(0,6)
+                randY = randint(-6,0)
+            if location1 == "Bottom Right":
+                randX = randint(-6,0)
+                randY = randint(-6,0)
+        if circleDistance(circle2, centerPoint) >= 325:
+            location2 = cornerDistance(circle2)
+            if location2 == "Top":
+                randA = 0
+                randB = (0,6)
+            if location2 == "Bottom":
+                randA = 0
+                randB = randint(-6,0)
+            if location2 == "Left":
+                randA = randint(0,6)
+                randB = 0
+            if location2 == "Right":
+                randA = randint(-6,0)
+                randB = 0
+            if location2 == "Top Left":
+                randA = randint(0,6)
+                randB = randint(0,6)
+            if location2 == "Top Right":
+                randA = randint(-6,0)
+                randB = randint(0,6)
+            if location2 == "Bottom Left":
+                randA = randint(0,6)
+                randB = randint(-6,0)
+            if location2 == "Bottom Right":
+                randA = randint(-6,0)
+                randB = randint(-6,0)
+        if circleDistance(circle3, centerPoint) >= 325:
+            location3 = cornerDistance(circle3)
+            if location3 == "Top":
+                randI = 0
+                randO = randint(0,6)
+            if location3 == "Bottom":
+                randI = 0
+                randO = randint(-6,0)
+            if location3 == "Left":
+                randI = randint(0,6)
+                randO = 0
+            if location3 == "Right":
+                randI = randint(-6,0)
+                randO = 0
+            if location3 == "Top Left":
+                randI = randint(0,6)
+                randO = randint(0,6)
+            if location3 == "Top Right":
+                randI = randint(-6,0)
+                randO = randint(0,6)
+            if location3 == "Bottom Left":
+                randI = randint(0,6)
+                randO = randint(-6,0)
+            if location3 == "Bottom Right":
+                randI = randint(-6,0)
+                randO = randint(-6,0)
+        if circleDistance(circle4, centerPoint) >= 325:
+            location4 = cornerDistance(circle4)
+            if location4 == "Top":
+                randM = 0
+                randN = randint(0,6)
+            if location4 == "Bottom":
+                randM = 0
+                randN = randint(-6,0)
+            if location4 == "Left":
+                randM = randint(0,6)
+                randN = 0
+            if location4 == "Right":
+                randM = randint(-6,0)
+                randN = 0
+            if location4 == "Top Left":
+                randM = randint(0,6)
+                randN = randint(0,6)
+            if location4 == "Top Right":
+                randM = randint(-6,0)
+                randN = randint(0,6)
+            if location4 == "Bottom Left":
+                randM = randint(0,6)
+                randN = randint(-6,0)
+            if location4 == "Bottom Right":
+                randM = randint(-6,0)
+                randN = randint(-6,0)
+        if circleDistance(circle1, circle2) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+        if circleDistance(circle1, circle4) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle1, circle3) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle3) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle4) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle3, circle4) <=50:
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        circle1.move(randX, randY)
+        circle2.move(randA, randB)
+        circle3.move(randI, randO)
+        circle4.move(randM, randN)
     
-    randX = speedIncrease(randX)
-    randY = speedIncrease(randY)
-    randA = speedIncrease(randA)
-    randB = speedIncrease(randB)
-    randI = speedIncrease(randI)
-    randO = speedIncrease(randO)
-    randM = speedIncrease(randM)
-    randN = speedIncrease(randN)
+        randX = speedIncrease(randX)
+        randY = speedIncrease(randY)
+        randA = speedIncrease(randA)
+        randB = speedIncrease(randB)
+        randI = speedIncrease(randI)
+        randO = speedIncrease(randO)
+        randM = speedIncrease(randM)
+        randN = speedIncrease(randN)
     
-    mouse_point = win.checkMouse()
-    if mouse_point != None:
-        mouse_point = Circle(mouse_point,1)
-        if circleDistance(circle1,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle2,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle3,mouse_point) <= 25:
-            textWrong.draw(win)
-            sleep(4)
-            textWrong.undraw()
-            y = y + 1
-            mouse_point = None
-        elif circleDistance(circle4,mouse_point) <= 25:
-            textWin.draw(win)
-            sleep(4)
-            textWin.undraw()
-            y = y + 1
-            x = 5
+        mouse_point = win.checkMouse()
+        if mouse_point != None:
+            mouse_point = Circle(mouse_point,1)
+            if circleDistance(circle1,mouse_point) <= 25:
+                textWin.draw(win)
+                sleep(4)
+                textWin.undraw()
+                y = y + 1
+                x = 5
+            elif circleDistance(circle2,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle3,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle4,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            else:
+                textMiss.draw(win)
+                sleep(4)
+                textMiss.undraw()
+                y = y + 1
+                mouse_point = None
+    
+    while x == 2:
+        if circleDistance(circle1, centerPoint) >= 325:
+            location1 = cornerDistance(circle1)
+            if location1 == "Top":
+                randX = 0
+                randY = (0,6)
+            if location1 == "Bottom":
+                randX = 0
+                randY = randint(-6,0)
+            if location1 == "Left":
+                randX = randint(0,6)
+                randY = 0
+            if location1 == "Right":
+                randX = randint(-6,0)
+                randY = 0
+            if location1 == "Top Left":
+                randX = randint(0,6)
+                randY = randint(0,6)
+            if location1 == "Top Right":
+                randX = randint(-6,0)
+                randY = randint(0,6)
+            if location1 == "Bottom Left":
+                randX = randint(0,6)
+                randY = randint(-6,0)
+            if location1 == "Bottom Right":
+                randX = randint(-6,0)
+                randY = randint(-6,0)
+        if circleDistance(circle2, centerPoint) >= 325:
+            location2 = cornerDistance(circle2)
+            if location2 == "Top":
+                randA = 0
+                randB = (0,6)
+            if location2 == "Bottom":
+                randA = 0
+                randB = randint(-6,0)
+            if location2 == "Left":
+                randA = randint(0,6)
+                randB = 0
+            if location2 == "Right":
+                randA = randint(-6,0)
+                randB = 0
+            if location2 == "Top Left":
+                randA = randint(0,6)
+                randB = randint(0,6)
+            if location2 == "Top Right":
+                randA = randint(-6,0)
+                randB = randint(0,6)
+            if location2 == "Bottom Left":
+                randA = randint(0,6)
+                randB = randint(-6,0)
+            if location2 == "Bottom Right":
+                randA = randint(-6,0)
+                randB = randint(-6,0)
+        if circleDistance(circle3, centerPoint) >= 325:
+            location3 = cornerDistance(circle3)
+            if location3 == "Top":
+                randI = 0
+                randO = randint(0,6)
+            if location3 == "Bottom":
+                randI = 0
+                randO = randint(-6,0)
+            if location3 == "Left":
+                randI = randint(0,6)
+                randO = 0
+            if location3 == "Right":
+                randI = randint(-6,0)
+                randO = 0
+            if location3 == "Top Left":
+                randI = randint(0,6)
+                randO = randint(0,6)
+            if location3 == "Top Right":
+                randI = randint(-6,0)
+                randO = randint(0,6)
+            if location3 == "Bottom Left":
+                randI = randint(0,6)
+                randO = randint(-6,0)
+            if location3 == "Bottom Right":
+                randI = randint(-6,0)
+                randO = randint(-6,0)
+        if circleDistance(circle4, centerPoint) >= 325:
+            location4 = cornerDistance(circle4)
+            if location4 == "Top":
+                randM = 0
+                randN = randint(0,6)
+            if location4 == "Bottom":
+                randM = 0
+                randN = randint(-6,0)
+            if location4 == "Left":
+                randM = randint(0,6)
+                randN = 0
+            if location4 == "Right":
+                randM = randint(-6,0)
+                randN = 0
+            if location4 == "Top Left":
+                randM = randint(0,6)
+                randN = randint(0,6)
+            if location4 == "Top Right":
+                randM = randint(-6,0)
+                randN = randint(0,6)
+            if location4 == "Bottom Left":
+                randM = randint(0,6)
+                randN = randint(-6,0)
+            if location4 == "Bottom Right":
+                randM = randint(-6,0)
+                randN = randint(-6,0)
+        if circleDistance(circle1, circle2) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+        if circleDistance(circle1, circle4) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle1, circle3) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle3) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle4) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle3, circle4) <=50:
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        circle1.move(randX, randY)
+        circle2.move(randA, randB)
+        circle3.move(randI, randO)
+        circle4.move(randM, randN)
+    
+        randX = speedIncrease(randX)
+        randY = speedIncrease(randY)
+        randA = speedIncrease(randA)
+        randB = speedIncrease(randB)
+        randI = speedIncrease(randI)
+        randO = speedIncrease(randO)
+        randM = speedIncrease(randM)
+        randN = speedIncrease(randN)
+    
+        mouse_point = win.checkMouse()
+        if mouse_point != None:
+            mouse_point = Circle(mouse_point,1)
+            if circleDistance(circle1,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle2,mouse_point) <= 25:
+                textWin.draw(win)
+                sleep(4)
+                textWin.undraw()
+                y = y + 1
+                x = 5
+            elif circleDistance(circle3,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle4,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            else:
+                textMiss.draw(win)
+                sleep(4)
+                textMiss.undraw()
+                y = y + 1
+                mouse_point = None
+    
+    while x == 3:
+        if circleDistance(circle1, centerPoint) >= 325:
+            location1 = cornerDistance(circle1)
+            if location1 == "Top":
+                randX = 0
+                randY = (0,6)
+            if location1 == "Bottom":
+                randX = 0
+                randY = randint(-6,0)
+            if location1 == "Left":
+                randX = randint(0,6)
+                randY = 0
+            if location1 == "Right":
+                randX = randint(-6,0)
+                randY = 0
+            if location1 == "Top Left":
+                randX = randint(0,6)
+                randY = randint(0,6)
+            if location1 == "Top Right":
+                randX = randint(-6,0)
+                randY = randint(0,6)
+            if location1 == "Bottom Left":
+                randX = randint(0,6)
+                randY = randint(-6,0)
+            if location1 == "Bottom Right":
+                randX = randint(-6,0)
+                randY = randint(-6,0)
+        if circleDistance(circle2, centerPoint) >= 325:
+            location2 = cornerDistance(circle2)
+            if location2 == "Top":
+                randA = 0
+                randB = (0,6)
+            if location2 == "Bottom":
+                randA = 0
+                randB = randint(-6,0)
+            if location2 == "Left":
+                randA = randint(0,6)
+                randB = 0
+            if location2 == "Right":
+                randA = randint(-6,0)
+                randB = 0
+            if location2 == "Top Left":
+                randA = randint(0,6)
+                randB = randint(0,6)
+            if location2 == "Top Right":
+                randA = randint(-6,0)
+                randB = randint(0,6)
+            if location2 == "Bottom Left":
+                randA = randint(0,6)
+                randB = randint(-6,0)
+            if location2 == "Bottom Right":
+                randA = randint(-6,0)
+                randB = randint(-6,0)
+        if circleDistance(circle3, centerPoint) >= 325:
+            location3 = cornerDistance(circle3)
+            if location3 == "Top":
+                randI = 0
+                randO = randint(0,6)
+            if location3 == "Bottom":
+                randI = 0
+                randO = randint(-6,0)
+            if location3 == "Left":
+                randI = randint(0,6)
+                randO = 0
+            if location3 == "Right":
+                randI = randint(-6,0)
+                randO = 0
+            if location3 == "Top Left":
+                randI = randint(0,6)
+                randO = randint(0,6)
+            if location3 == "Top Right":
+                randI = randint(-6,0)
+                randO = randint(0,6)
+            if location3 == "Bottom Left":
+                randI = randint(0,6)
+                randO = randint(-6,0)
+            if location3 == "Bottom Right":
+                randI = randint(-6,0)
+                randO = randint(-6,0)
+        if circleDistance(circle4, centerPoint) >= 325:
+            location4 = cornerDistance(circle4)
+            if location4 == "Top":
+                randM = 0
+                randN = randint(0,6)
+            if location4 == "Bottom":
+                randM = 0
+                randN = randint(-6,0)
+            if location4 == "Left":
+                randM = randint(0,6)
+                randN = 0
+            if location4 == "Right":
+                randM = randint(-6,0)
+                randN = 0
+            if location4 == "Top Left":
+                randM = randint(0,6)
+                randN = randint(0,6)
+            if location4 == "Top Right":
+                randM = randint(-6,0)
+                randN = randint(0,6)
+            if location4 == "Bottom Left":
+                randM = randint(0,6)
+                randN = randint(-6,0)
+            if location4 == "Bottom Right":
+                randM = randint(-6,0)
+                randN = randint(-6,0)
+        if circleDistance(circle1, circle2) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+        if circleDistance(circle1, circle4) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle1, circle3) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle3) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle4) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle3, circle4) <=50:
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        circle1.move(randX, randY)
+        circle2.move(randA, randB)
+        circle3.move(randI, randO)
+        circle4.move(randM, randN)
+    
+        randX = speedIncrease(randX)
+        randY = speedIncrease(randY)
+        randA = speedIncrease(randA)
+        randB = speedIncrease(randB)
+        randI = speedIncrease(randI)
+        randO = speedIncrease(randO)
+        randM = speedIncrease(randM)
+        randN = speedIncrease(randN)
+    
+        mouse_point = win.checkMouse()
+        if mouse_point != None:
+            mouse_point = Circle(mouse_point,1)
+            if circleDistance(circle1,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle2,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle3,mouse_point) <= 25:
+                textWin.draw(win)
+                sleep(4)
+                textWin.undraw()
+                y = y + 1
+                x = 5
+            elif circleDistance(circle4,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            else:
+                textMiss.draw(win)
+                sleep(4)
+                textMiss.undraw()
+                y = y + 1
+                mouse_point = None
+
+    while x == 4:
+        if circleDistance(circle1, centerPoint) >= 325:
+            location1 = cornerDistance(circle1)
+            if location1 == "Top":
+                randX = 0
+                randY = (0,6)
+            if location1 == "Bottom":
+                randX = 0
+                randY = randint(-6,0)
+            if location1 == "Left":
+                randX = randint(0,6)
+                randY = 0
+            if location1 == "Right":
+                randX = randint(-6,0)
+                randY = 0
+            if location1 == "Top Left":
+                randX = randint(0,6)
+                randY = randint(0,6)
+            if location1 == "Top Right":
+                randX = randint(-6,0)
+                randY = randint(0,6)
+            if location1 == "Bottom Left":
+                randX = randint(0,6)
+                randY = randint(-6,0)
+            if location1 == "Bottom Right":
+                randX = randint(-6,0)
+                randY = randint(-6,0)
+        if circleDistance(circle2, centerPoint) >= 325:
+            location2 = cornerDistance(circle2)
+            if location2 == "Top":
+                randA = 0
+                randB = (0,6)
+            if location2 == "Bottom":
+                randA = 0
+                randB = randint(-6,0)
+            if location2 == "Left":
+                randA = randint(0,6)
+                randB = 0
+            if location2 == "Right":
+                randA = randint(-6,0)
+                randB = 0
+            if location2 == "Top Left":
+                randA = randint(0,6)
+                randB = randint(0,6)
+            if location2 == "Top Right":
+                randA = randint(-6,0)
+                randB = randint(0,6)
+            if location2 == "Bottom Left":
+                randA = randint(0,6)
+                randB = randint(-6,0)
+            if location2 == "Bottom Right":
+                randA = randint(-6,0)
+                randB = randint(-6,0)
+        if circleDistance(circle3, centerPoint) >= 325:
+            location3 = cornerDistance(circle3)
+            if location3 == "Top":
+                randI = 0
+                randO = randint(0,6)
+            if location3 == "Bottom":
+                randI = 0
+                randO = randint(-6,0)
+            if location3 == "Left":
+                randI = randint(0,6)
+                randO = 0
+            if location3 == "Right":
+                randI = randint(-6,0)
+                randO = 0
+            if location3 == "Top Left":
+                randI = randint(0,6)
+                randO = randint(0,6)
+            if location3 == "Top Right":
+                randI = randint(-6,0)
+                randO = randint(0,6)
+            if location3 == "Bottom Left":
+                randI = randint(0,6)
+                randO = randint(-6,0)
+            if location3 == "Bottom Right":
+                randI = randint(-6,0)
+                randO = randint(-6,0)
+        if circleDistance(circle4, centerPoint) >= 325:
+            location4 = cornerDistance(circle4)
+            if location4 == "Top":
+                randM = 0
+                randN = randint(0,6)
+            if location4 == "Bottom":
+                randM = 0
+                randN = randint(-6,0)
+            if location4 == "Left":
+                randM = randint(0,6)
+                randN = 0
+            if location4 == "Right":
+                randM = randint(-6,0)
+                randN = 0
+            if location4 == "Top Left":
+                randM = randint(0,6)
+                randN = randint(0,6)
+            if location4 == "Top Right":
+                randM = randint(-6,0)
+                randN = randint(0,6)
+            if location4 == "Bottom Left":
+                randM = randint(0,6)
+                randN = randint(-6,0)
+            if location4 == "Bottom Right":
+                randM = randint(-6,0)
+                randN = randint(-6,0)
+        if circleDistance(circle1, circle2) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+        if circleDistance(circle1, circle4) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle1, circle3) <=50:
+            randX = randint(-6,6)
+            randY = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle3) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+        if circleDistance(circle2, circle4) <=50:
+            randA = randint(-6,6)
+            randB = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        if circleDistance(circle3, circle4) <=50:
+            randI = randint(-6,6)
+            randO = randint(-6,6)
+            randM = randint(-6,6)
+            randN = randint(-6,6)
+        circle1.move(randX, randY)
+        circle2.move(randA, randB)
+        circle3.move(randI, randO)
+        circle4.move(randM, randN)
+    
+        randX = speedIncrease(randX)
+        randY = speedIncrease(randY)
+        randA = speedIncrease(randA)
+        randB = speedIncrease(randB)
+        randI = speedIncrease(randI)
+        randO = speedIncrease(randO)
+        randM = speedIncrease(randM)
+        randN = speedIncrease(randN)
+    
+        mouse_point = win.checkMouse()
+        if mouse_point != None:
+            mouse_point = Circle(mouse_point,1)
+            if circleDistance(circle1,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle2,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle3,mouse_point) <= 25:
+                textWrong.draw(win)
+                sleep(4)
+                textWrong.undraw()
+                y = y + 1
+                mouse_point = None
+            elif circleDistance(circle4,mouse_point) <= 25:
+                textWin.draw(win)
+                sleep(4)
+                textWin.undraw()
+                y = y + 1
+                x = 5
+            else:
+                textMiss.draw(win)
+                sleep(4)
+                textMiss.undraw()
+                y = y + 1
+                mouse_point = None
+
+    tFinal = time.time() - tNot
+    tFinal = str(round(tFinal,2))
+
+    if x == 5:
+        text4 = Text(Point(350,350),("Nice Job. You got the circle in " + str(y) + " clicks and " + tFinal + " seconds!"))
+        text4.setSize(15)
+        text4.draw(win)
+        sleep(4)
+        text4.undraw()
+        circle1.undraw()
+        circle2.undraw()
+        circle3.undraw()
+        circle4.undraw()
+        circleBorder.undraw()
+    
+willingness = "unknown"
+
+titleText = Text(Point(350, 200), "Get the Circle!")
+titleText.setSize(35)
+titleText.draw(win)
+mouse_punt = None
+
+menuText1 = Text(Point(350, 450), "Play")
+menuText1.setSize(20)
+menuText1.draw(win)
+menuText2 = Text(Point(350, 550), "Exit")
+menuText2.setSize(20)
+menuText2.draw(win)
+
+while willingness == "unknown":
+    mouse_punt = win.checkMouse()
+    if mouse_punt != None:
+        mouse_punt = Circle(mouse_punt,1)
+        menuText1Place = Circle(Point(350,450),1)
+        menuText2Place = Circle(Point(350,550),1)
+        if circleDistance(menuText1Place,mouse_punt) <= 50:
+            titleText.undraw()
+            menuText1.undraw()
+            menuText2.undraw()
+            gamePlay()
+            askText = Text(Point(350,250),"Would you like to play again?")
+            askText.setSize(25)
+            askText.draw(win)
+            yes = Text(Point(250,450), "YES!")
+            yes.setSize(20)
+            yes.draw(win)
+            no = Text(Point(450,450), "no...")
+            no.setSize(20)
+            no.draw(win)
+            mouse_punk = None
+            while mouse_punk == None:
+                mouse_punk = win.checkMouse()
+                if mouse_punk != None:
+                    mouse_punk = Circle(mouse_punk,1)
+                    yesPlace = Circle(Point(250,450),1)
+                    noPlace = Circle(Point(450,450),1)
+                    if circleDistance(yesPlace,mouse_punk) <= 50:
+                        willingness = "indeed"
+                    if circleDistance(noPlace,mouse_punk) <= 50:
+                        win.close()
+                        willingness = "not"
+                    elif circleDistance(yesPlace,mouse_punk) >= 50 and circleDistance(noPlace,mouse_punk) >= 50:
+                        mouse_punk = None
+        if circleDistance(menuText2Place,mouse_punt) <= 50:
+            win.close()
+            willingness = "not"
         else:
-            textMiss.draw(win)
-            sleep(4)
-            textMiss.undraw()
-            y = y + 1
-            mouse_point = None
+            mouse_punt = None
 
-tFinal = time.time() - tNot
-tFinal = str(round(tFinal,2))
-
-if x == 5:
-    text4 = Text(Point(350,350),("Nice Job. You got the circle in " + str(y) + " clicks and " + tFinal + " seconds!"))
-    text4.setSize(15)
-    text4.draw(win)
-    
+while willingness == "indeed":
+    askText.undraw()
+    yes.undraw()
+    no.undraw()
+    gamePlay()
+    askText = Text(Point(350,250),"Would you like to play again?")
+    askText.setSize(25)
+    askText.draw(win)
+    yes = Text(Point(250,450), "YES!")
+    yes.setSize(20)
+    yes.draw(win)
+    no = Text(Point(450,450), "no...")
+    no.setSize(20)
+    no.draw(win)
+    mouse_punk = None
+    while mouse_punk == None:
+        mouse_punk = win.checkMouse()
+        if mouse_punk != None:
+            willingness = "unknown"
+            mouse_punk = Circle(mouse_punk,1)
+            yesPlace = Circle(Point(250,450),1)
+            noPlace = Circle(Point(450,450),1)
+            if circleDistance(yesPlace,mouse_punk) <= 50:
+                willingness = "indeed"
+            if circleDistance(noPlace,mouse_punk) <= 50:
+                win.close()
+                willingness = "not"
+            elif circleDistance(yesPlace,mouse_punk) >= 50 and circleDistance(noPlace,mouse_punk) >= 50:
+                mouse_punk = None
